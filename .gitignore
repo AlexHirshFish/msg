@@ -1,0 +1,30 @@
+```gitignore
+# Environment variables
+.env
+.env.local
+
+# Dependencies
+/vendor/
+/node_modules/
+
+# Logs
+*.log
+logs/
+
+# Temporary files
+tmp/
+temp/
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Storage files (в production эти файлы будут на внешнем хранилище)
+/storage/
+```
