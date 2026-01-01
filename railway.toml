@@ -1,8 +1,19 @@
 [build]
 builder = "nixpacks"
 
+[build.nixpacks]
+phases.setup = '''
+  # Install PHP 8.2 with required extensions
+  export PHP_VERSION=8.2
+  nix-env -iA nixpkgs.php82 nixpkgs.php82Extensions.pdo nixpkgs.php82Extensions.pdo_mysql nixpkgs.php82Extensions.mbstring nixpkgs.php82Extensions.gd nixpkgs.php82Extensions.curl nixpkgs.php82Extensions.zip
+  nix-env -iA nixpkgs.composer
+  nix-env -iA nixpkgs.nodejs-18_x
+'''
+
+[build.nixpacks]
+install = '''
+  composer install --ignore-platform-reqs
+'''
+
 [deploy]
 startCommand = "php -S 0.0.0.0:$PORT -t ."
-
-[variables]
-PHP_VERSION = "8.1"
